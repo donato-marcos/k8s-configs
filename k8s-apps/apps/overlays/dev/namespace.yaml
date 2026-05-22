@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: atv4-compassuol-dev
+  labels:
+    app.kubernetes.io/name: atv4-compassuol
+    app.kubernetes.io/part-of: atv4-compassuol
+    environment: dev

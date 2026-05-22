@@ -1,0 +1,15 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: backend
+  namespace: atv4-compassuol
+spec:
+  parentRefs:
+    - name: public-gateway-ipv6
+      namespace: default
+  hostnames:
+    - "backend.aesthar.com.br"
+  rules:
+    - backendRefs:
+      - name: backend
+        port: 80

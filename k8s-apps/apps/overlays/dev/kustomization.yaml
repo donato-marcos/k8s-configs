@@ -1,0 +1,29 @@
+#k8s-apps/apps/overlays/dev/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Referência à base
+resources:
+  - ../../base
+  - namespace.yaml
+
+# Namespace específico do ambiente
+namespace: atv4-compassuol-dev
+
+# Cria o namespace se não existir
+patches:
+  - path: patch-frontend.yaml
+    target:
+      kind: Deployment
+      name: frontend
+  - path: patch-backend.yaml
+    target:
+      kind: Deployment
+      name: backend
+
+# Configurações específicas de DEV
+images:
+  - name: aesthar/atv4_frontend
+    newTag: 20260320-31ed8f4-48
+  - name: aesthar/atv4_backend
+    newTag: 20260320-69593fb-50

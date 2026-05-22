@@ -1,0 +1,16 @@
+#k8s-apps/apps/base/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Importa os componentes como sub-diretórios
+resources:
+  - frontend
+  - backend
+
+# Labels comuns aplicadas a todos os recursos
+commonLabels:
+  app.kubernetes.io/part-of: atv4-compassuol
+  app.kubernetes.io/managed-by: kustomize
+
+# Namespace padrão (pode ser sobrescrito pelos overlays)
+namespace: atv4-compassuol
