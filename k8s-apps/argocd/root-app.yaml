@@ -9,7 +9,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/donato-marcos/k8s-apps.git
+    repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
     path: k8s-apps/argocd/apps
 

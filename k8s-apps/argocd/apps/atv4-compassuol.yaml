@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/donato-marcos/k8s-apps.git
+    repoURL: https://github.com/donato-marcos/k8s-configs.git
     path: k8s-apps/apps/atv4-compassuol/overlays/dev
     targetRevision: main
   destination:
