@@ -6,10 +6,14 @@ metadata:
 spec:
   parentRefs:
     - name: public-gateway-ipv4
+      group: gateway.networking.k8s.io
+      kind: Gateway
       namespace: default
   hostnames:
     - "frontend.aesthar.com.br"
   rules:
     - backendRefs:
       - name: frontend-service
+        group: ''
+        kind: Service
         port: 80

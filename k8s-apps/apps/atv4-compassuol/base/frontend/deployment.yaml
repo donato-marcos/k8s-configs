@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/component: web
     app.kubernetes.io/part-of: atv4-compassuol
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 3
   strategy:
     type: RollingUpdate
