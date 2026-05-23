@@ -11,5 +11,5 @@ spec:
     - "frontend.aesthar.com.br"
   rules:
     - backendRefs:
-      - name: frontend
+      - name: frontend-service
         port: 80

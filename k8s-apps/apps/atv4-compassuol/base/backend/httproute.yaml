@@ -11,5 +11,5 @@ spec:
     - "backend.aesthar.com.br"
   rules:
     - backendRefs:
-      - name: backend
+      - name: backend-service
         port: 80
