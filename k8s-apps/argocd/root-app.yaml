@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
-    path: k8s-apps/argocd/apps
+    path: k8s-apps/argocd
 
   destination:
     server: https://kubernetes.default.svc
