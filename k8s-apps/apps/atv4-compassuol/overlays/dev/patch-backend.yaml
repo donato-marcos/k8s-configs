@@ -20,12 +20,3 @@ spec:
               value: "True"  # Habilita debug em DEV
             - name: ENVIRONMENT
               value: "dev"
----
-# Patch para ajustar o HPA em DEV (desabilita ou reduz)
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: backend
-spec:
-  minReplicas: 1
-  maxReplicas: 2  # Limita escala em DEV

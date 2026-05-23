@@ -7,6 +7,3 @@ resources:
   - service.yaml
   - httproute.yaml
   - hpa.yaml
-
-commonLabels:
-  app.kubernetes.io/component: backend

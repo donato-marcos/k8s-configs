@@ -6,11 +6,3 @@ kind: Kustomization
 resources:
   - frontend
   - backend
-
-# Labels comuns aplicadas a todos os recursos
-commonLabels:
-  app.kubernetes.io/part-of: atv4-compassuol
-  app.kubernetes.io/managed-by: kustomize
-
-# Namespace padrão (pode ser sobrescrito pelos overlays)
-namespace: atv4-compassuol
