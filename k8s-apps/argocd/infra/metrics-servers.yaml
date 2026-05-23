@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: atv4-compassuol-dev
+  name: metrics-server
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
-    path: k8s-apps/apps/atv4-compassuol/overlays/dev
     targetRevision: main
+    path: k8s-apps/infra/metrics-server
   destination:
     server: https://kubernetes.default.svc
-    namespace: atv4-compassuol-dev
+    namespace: kube-system
   syncPolicy:
     automated:
-      prune: true
+      prune: false
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-      - ApplyOutOfSyncOnly=true
+      - EnableHelm=true
