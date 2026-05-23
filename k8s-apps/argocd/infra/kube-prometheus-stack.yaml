@@ -9,6 +9,8 @@ spec:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
     path: k8s-apps/infra/kube-prometheus-stack
+    kustomize:
+      buildOptions: --enable-helm
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -19,4 +21,3 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-      - EnableHelm=true
