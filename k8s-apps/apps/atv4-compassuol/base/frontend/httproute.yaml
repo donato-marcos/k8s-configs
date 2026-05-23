@@ -5,7 +5,7 @@ metadata:
   namespace: atv4-compassuol
 spec:
   parentRefs:
-    - name: public-gateway-ipv6
+    - name: public-gateway-ipv4
       namespace: default
   hostnames:
     - "frontend.aesthar.com.br"
