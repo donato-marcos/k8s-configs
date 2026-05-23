@@ -9,8 +9,6 @@ spec:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
     path: k8s-apps/infra/metrics-server
-    kustomize:
-      buildOptions: --enable-helm
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
