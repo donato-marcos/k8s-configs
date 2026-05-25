@@ -1,32 +1,68 @@
-# 📦 k8s-configs — GitOps Lab
+># k8s-configs — GitOps Lab
 
 Repositório GitOps para gerenciamento de aplicações e infraestrutura Kubernetes via **ArgoCD + Kustomize + Helm**.
 
 
 ## 🗂️ Estrutura
 
-```
+```bash
 k8s-configs/
-├── k8s-apps/
-│   ├── apps/                           # Aplicações (Kustomize)
-│   │   └── atv4-compassuol/
-│   │       ├── base/                   # Manifests canônicos
-│   │       └── overlays/               # dev/, prod/
-│   │
-│   ├── argocd/                         # Definições do ArgoCD
-│   │   ├── root-app.yaml               # App-of-Apps (entrypoint)
-│   │   ├── apps/                       # Apps de negócio
-│   │   └── infra/                      # Apps de infra
-│   │
-│   └── infra/                          # Infraestrutura
-│       ├── metrics-server/
+├── k8s-apps
+│   ├── apps
+│   │   └── atv4-compassuol
+│   │       ├── base
+│   │       │   ├── backend
+│   │       │   │   ├── deployment.yaml
+│   │       │   │   ├── hpa.yaml
+│   │       │   │   ├── httproute.yaml
+│   │       │   │   ├── kustomization.yaml
+│   │       │   │   └── service.yaml
+│   │       │   ├── frontend
+│   │       │   │   ├── deployment.yaml
+│   │       │   │   ├── hpa.yaml
+│   │       │   │   ├── httproute.yaml
+│   │       │   │   ├── kustomization.yaml
+│   │       │   │   └── service.yaml
+│   │       │   └── kustomization.yaml
+│   │       └── overlays
+│   │           ├── dev
+│   │           │   ├── kustomization.yaml
+│   │           │   ├── namespace.yaml
+│   │           │   ├── patch-backend.yaml
+│   │           │   └── patch-frontend.yaml
+│   │           └── prod
+│   ├── argocd
+│   │   ├── apps
+│   │   │   └── atv4-compassuol.yaml
+│   │   ├── infra
+│   │   │   ├── argocd.yaml
+│   │   │   ├── cert-manager.yaml
+│   │   │   ├── cilium.yaml
+│   │   │   ├── kube-prometheus-stack.yaml
+│   │   │   └── metrics-server.yaml
+│   │   └── root-app.yaml
+│   └── infra
+│       ├── argocd
+│       │   ├── httproute-argocd.yaml
 │       │   ├── kustomization.yaml
 │       │   └── values.yaml
-│       └── kube-prometheus-stack/
+│       ├── cert-manager
+│       │   ├── kustomization.yaml
+│       │   └── values.yaml
+│       ├── cilium
+│       │   ├── kustomization.yaml
+│       │   ├── networking
+│       │   │   ├── gateway-ipv4.yaml
+│       │   │   ├── httproute-hubble.yaml
+│       │   │   └── l2-ipv4-pool.yaml
+│       │   └── values.yaml
+│       ├── kube-prometheus-stack
+│       │   ├── httproute-grafana.yaml
+│       │   ├── kustomization.yaml
+│       │   └── values.yaml
+│       └── metrics-server
 │           ├── kustomization.yaml
-│           ├── values.yaml
-│           └── httproute-grafana.yaml
-│
+│           └── values.yaml
 └── README.md
 ```
 
