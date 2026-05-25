@@ -83,8 +83,8 @@ loadBalancer:
 # --- Gateway API (Substitui Ingress-Nginx) ---
 gatewayAPI:
   enabled: true
-  gatewayClass:
-    create: true
+#  gatewayClass:
+#    create: true
 
 envoy:
   enabled: true
