@@ -1,0 +1,135 @@
+# cilium-values.yaml
+# --- Kubernetes API ---
+k8sServiceHost: "172.16.200.65"
+k8sServicePort: 6443
+
+cluster:
+  name: k8s-cluster
+  id: 1
+
+# --- IPv4/IPv6 (Dual-Stack) ---
+ipv4:
+  enabled: true
+enableIPv4Masquerade: true
+
+ipv6:
+  enabled: false
+enableIPv6Masquerade: false
+
+#masqueradeInterfaces: "enp1s0"
+
+# --- kube-proxy replacement ---
+# Substitui totalmente o kube-proxy usando eBPF
+kubeProxyReplacement: true
+#hostFirewall:
+#  enabled: true # pode deixar o lab mais complicado, cuidado.
+
+# --- Datapath & Roteamento Nativo ---
+# Inclui ambas as interfaces relevantes: Cluster (para Pods)
+#devices: ""
+
+#extraConfig:
+#  enable-ipv6-ndp: "true"
+#  ipv6-mcast-device: "enp1s0"
+  
+routingMode: native
+autoDirectNodeRoutes: true
+
+# Define os CIDRs globais para roteamento nativo (opcional se o IPAM já estiver correto, mas bom para explícito)
+ipv4NativeRoutingCIDR: "10.244.0.0/16"
+#ipv6NativeRoutingCIDR: "fd00:10:244::/56"
+
+# --- IPAM (Gerenciamento de IPs) ---
+ipam:
+  mode: kubernetes
+  operator:
+    # Pool IPv4: /16 dividido em /24 por nó
+    clusterPoolIPv4PodCIDRList:
+      - "10.244.0.0/16"
+    clusterPoolIPv4MaskSize: 24
+    # Pool IPv6: /56 dividido em /64 por nó
+    #clusterPoolIPv6PodCIDRList:
+    #  - "fd00:10:244::/56"
+    #clusterPoolIPv6MaskSize: 64
+
+#tunnel: disabled
+
+# --- L2 Announcements (Substitui MetalLB) ---
+l2announcements:
+  enabled: true
+
+l2NeighDiscovery:
+  enabled: true
+
+loadBalancer:
+  standalone: false
+  algorithm: maglev
+  mode: dsr
+  acceleration: best-effort
+  dsrDispatch: opt
+  serviceTopology: true
+  l7:
+    backend: envoy
+    ports: []
+
+#externalIPs:
+#  enabled: true
+
+#nodePort:
+#  enabled: true
+
+#MTU: 1400
+
+# --- Gateway API (Substitui Ingress-Nginx) ---
+gatewayAPI:
+  enabled: true
+  gatewayClass:
+    create: true
+
+envoy:
+  enabled: true
+
+# --- Hubble (Observabilidade) ---
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+  tls:
+    enabled: false
+  peerService:
+    clusterDomain: "cluster.local"
+  metrics:
+    enableOpenMetrics: true
+    enabled:
+      - dns
+      - drop
+      - tcp
+      - flow
+      - port-distribution
+      - icmp
+      - http
+#    serviceMonitor:
+#      enabled: true
+
+operator:
+  prometheus:
+    enabled: true
+    
+# --- Prometheus Integrado (Opcional) ---
+# Deixado falso pois você usará a stack kube-prometheus separada
+prometheus:
+  enabled: false
+
+# --- Performance e BPF ---
+bpf:
+  masquerade: true
+  hostLegacyRouting: false
+  tproxy: true
+
+# --- Performance BIG TCP (Precisa verificar se suas máquinas suportam ) ---
+# Comando: # ethtool -k <NIC> | grep -E "segmentation|receive"
+# TSO, GSO e GRO devem estar `on`
+enableIPv4BIGTCP: true
+#enableIPv6BIGTCP: true

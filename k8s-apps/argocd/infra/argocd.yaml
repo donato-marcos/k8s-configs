@@ -1,24 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: atv4-compassuol-dev
+  name: argocd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
+    argocd.argoproj.io/sync-wave: "-15"
 spec:
   project: default
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
-    path: k8s-apps/apps/atv4-compassuol/overlays/dev
     targetRevision: main
+    path: k8s-apps/infra/argocd
   destination:
     server: https://kubernetes.default.svc
-    namespace: atv4-compassuol-dev
+    namespace: argocd
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false
+      selfHeal: false
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-      - ApplyOutOfSyncOnly=true

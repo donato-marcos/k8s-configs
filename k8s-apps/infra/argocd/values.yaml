@@ -1,0 +1,14 @@
+# argocd-values.yaml
+configs:
+  params:
+    server.insecure: "true"
+
+  cm:
+    kustomize.buildOptions: "--enable-helm"
+    admin.enabled: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+
+  secret:
+    createSecret: true
+    argocdServerAdminPassword: "$2a$10$ELkUwC1ks63C8FTgD5sn/e1maUYfujHxkv6dt4fl/sgaNbSiWw/Um"
+    argocdServerAdminPasswordMtime: "2026-05-24T15:04:05Z"
