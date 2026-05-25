@@ -1,6 +1,8 @@
-># k8s-configs — GitOps Lab
+# k8s-configs — GitOps Lab
 
 Repositório GitOps para gerenciamento de aplicações e infraestrutura Kubernetes via **ArgoCD + Kustomize + Helm**.
+
+> Essse repositório faz parte do LAB: [cluster-kubernetes-cilium-ipv4](https://github.com/donato-marcos/Laboratorio-Kubernetes-com-Cilium-e-GatewayAPI/blob/main/cluster-kubernetes-cilium-ipv4.md)
 
 
 ## 🗂️ Estrutura
