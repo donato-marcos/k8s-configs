@@ -3,17 +3,21 @@ kind: Application
 metadata:
   name: security
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
 spec:
   project: default
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
     path: infra/security
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true

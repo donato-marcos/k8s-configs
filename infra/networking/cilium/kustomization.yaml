@@ -17,3 +17,4 @@ resources:
   - bgp/peer-config-ipv4.yaml
   - bgp/peer-config-ipv6.yaml
   - ipam/loadbalancer-pool.yaml
+  - gateway-api/gateway.yaml
