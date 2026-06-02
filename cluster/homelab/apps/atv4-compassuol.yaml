@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cilium
+  name: atv4-compassuol-dev
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "-20"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
+    path: apps/atv4-compassuol/overlays/dev
     targetRevision: main
-    path: k8s-apps/infra/cilium
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: atv4-compassuol-dev
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true

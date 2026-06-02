@@ -1,6 +1,0 @@
-grafana:
-  adminPassword: "alunofatec"
-prometheus:
-  prometheusSpec:
-    podMonitorSelectorNilUsesHelmValues: false
-    serviceMonitorSelectorNilUsesHelmValues: false
