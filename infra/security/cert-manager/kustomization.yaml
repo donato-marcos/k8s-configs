@@ -12,7 +12,7 @@ helmCharts:
 
 resources:
   - cloudflare-api-token-secret.yaml
-  - certificates/prod-certificate.yaml
-  - certificates/staging-certificate.yaml
+  - certificates/wildcard-prod.yaml
+  - certificates/wildcard-staging.yaml
   - issuers/prod-clousterissuer.yaml
   - issuers/staging-clousterissuer.yaml
