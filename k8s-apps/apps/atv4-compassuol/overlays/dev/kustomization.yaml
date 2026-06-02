@@ -1,4 +1,4 @@
-#k8s-apps/apps/overlays/dev/kustomization.yaml
+#k8s-apps/apps/atv4-compassuol/overlays/dev/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
