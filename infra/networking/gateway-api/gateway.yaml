@@ -1,0 +1,33 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: meu-gateway-dualstack
+  namespace: default
+spec:
+  gatewayClassName: cilium
+  addresses:
+  #- type: IPAddress
+  #  value: "192.168.0.240"
+  - type: IPAddress
+    value: "2804:14d:3280:4043::eeee:10"
+  listeners:
+  - name: http
+    protocol: HTTP
+    port: 80
+    hostname: null
+    allowedRoutes:
+      namespaces:
+        from: All
+  - name: https
+    protocol: HTTPS
+    port: 443
+    hostname: null
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: aesthar-com-br-prod-tls
+        namespace: default

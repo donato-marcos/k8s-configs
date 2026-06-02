@@ -1,0 +1,24 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: monitoring-grafana-route
+  namespace: monitoring
+spec:
+  parentRefs:
+    - name: meu-gateway-dualstack
+      group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: default
+  hostnames:
+    - "grafana.aesthar.com.br"
+  rules:
+    - backendRefs:
+      - name: monitoring-grafana
+        group: ''
+        kind: Service
+        port: 80
+        weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /

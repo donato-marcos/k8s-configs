@@ -1,0 +1,8 @@
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: dualstack-pool
+spec:
+  blocks:
+  - cidr: "192.168.0.240/29"
+  - cidr: "2804:14d:3280:4043::eeee:0/112"

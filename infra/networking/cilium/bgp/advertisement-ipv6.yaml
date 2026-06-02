@@ -1,0 +1,16 @@
+apiVersion: cilium.io/v2
+kind: CiliumBGPAdvertisement
+metadata:
+  name: bgp-ipv6-adv
+  labels:
+    family: ipv6
+spec:
+  advertisements:
+  - advertisementType: "Service"
+    service:
+      addresses:
+      - ExternalIP
+      - LoadBalancerIP
+    selector:
+      matchExpressions:
+      - {key: io.kubernetes.service.name, operator: NotIn, values: ['dummy-service-value']}

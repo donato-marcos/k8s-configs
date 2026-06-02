@@ -1,0 +1,21 @@
+domainFilters:
+- aesthar.com.br
+env:
+- name: CF_API_TOKEN
+  valueFrom:
+    secretKeyRef:
+      key: api-token
+      name: cloudflare-api-token
+interval: 1m
+logLevel: debug
+policy: sync
+provider:
+  name: cloudflare
+registry: txt
+sources:
+- gateway-httproute
+#- gateway-grpcroute
+#-  gateway-tlsroute
+#-  gateway-tcproute
+#-  gateway-udprout
+txtOwnerId: homelab

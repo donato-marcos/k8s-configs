@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: cilium
+    repo: oci://quay.io/cilium/charts/
+    version: 1.19.4
+    releaseName: cilium
+    namespace: kube-system
+    valuesFile: values.yaml
+    includeCRDs: true
+
+resources:
+  - bgp/advertisement-ipv4.yaml
+  - bgp/advertisement-ipv6.yaml
+  - bgp/cluster-config.yaml
+  - bgp/peer-config-ipv4.yaml
+  - bgp/peer-config-ipv6.yaml
+  - ipam/loadbalancer-pool.yaml

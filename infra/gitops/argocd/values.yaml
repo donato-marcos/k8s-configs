@@ -1,0 +1,7 @@
+# argocd-values.yaml
+configs:
+  params:
+    server.insecure: "true"
+
+  cm:
+    kustomize.buildOptions: "--enable-helm"

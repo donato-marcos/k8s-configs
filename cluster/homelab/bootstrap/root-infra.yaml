@@ -12,7 +12,7 @@ spec:
     path: cluster/homelab/infra
     directory:
       recurse: true
-      exclude: "root-app.yaml,root-infra.yaml"
+      exclude: "root-infra.yaml"
 
   destination:
     server: https://kubernetes.default.svc
