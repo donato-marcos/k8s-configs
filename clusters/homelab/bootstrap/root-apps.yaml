@@ -9,10 +9,10 @@ spec:
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
-    path: cluster/homelab/apps
+    path: clusters/homelab/apps
     directory:
       recurse: true
-      exclude: "root-app.yaml"
+      exclude: "root-apps.yaml"
 
   destination:
     server: https://kubernetes.default.svc

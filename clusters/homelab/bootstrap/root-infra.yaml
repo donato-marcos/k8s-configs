@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
-    path: cluster/homelab/infra
+    path: clusters/homelab/infra
     directory:
       recurse: true
       exclude: "root-infra.yaml"
