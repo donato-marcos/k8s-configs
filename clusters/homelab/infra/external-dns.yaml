@@ -1,16 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: observability
+  name: external-dns
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
 spec:
   project: default
   source:
     repoURL: https://github.com/donato-marcos/k8s-configs.git
     targetRevision: main
-    path: infra/observability
+    path: infra/networking/external-dns
   destination:
     server: https://kubernetes.default.svc
+    namespace: external-dns
   syncPolicy:
     automated:
       prune: true
