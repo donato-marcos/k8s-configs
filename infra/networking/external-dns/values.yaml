@@ -5,7 +5,7 @@ env:
   valueFrom:
     secretKeyRef:
       key: api-token
-      name: cloudflare-api-token
+      name: cloudflare-api-token-secret
 interval: 1m
 logLevel: debug
 policy: sync

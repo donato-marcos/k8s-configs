@@ -18,3 +18,4 @@ resources:
   - bgp/peer-config-ipv6.yaml
   - ipam/loadbalancer-pool.yaml
   - gateway-api/gateway.yaml
+  - hubble-httproute.yaml
