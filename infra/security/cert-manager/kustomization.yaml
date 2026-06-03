@@ -14,5 +14,5 @@ resources:
 #  - cloudflare-api-token-secret.yaml
   - certificates/wildcard-prod.yaml
   - certificates/wildcard-staging.yaml
-  - issuers/prod-clousterissuer.yaml
-  - issuers/staging-clousterissuer.yaml
+  - issuers/prod-clusterissuer.yaml
+  - issuers/staging-clusterissuer.yaml
