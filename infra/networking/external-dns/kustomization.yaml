@@ -10,5 +10,5 @@ helmCharts:
     valuesFile: values.yaml
     includeCRDs: true
 
-resources:
-  - cloudflare-api-token-secret.yaml
+#resources:
+#  - cloudflare-api-token-secret.yaml

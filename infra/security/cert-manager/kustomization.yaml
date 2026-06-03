@@ -11,7 +11,7 @@ helmCharts:
     includeCRDs: true
 
 resources:
-  - cloudflare-api-token-secret.yaml
+#  - cloudflare-api-token-secret.yaml
   - certificates/wildcard-prod.yaml
   - certificates/wildcard-staging.yaml
   - issuers/prod-clousterissuer.yaml
