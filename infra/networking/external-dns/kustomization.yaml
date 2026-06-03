@@ -12,5 +12,3 @@ helmCharts:
 
 resources:
   - cloudflare-api-token-secret.yaml
-
-namespace: external-dns
