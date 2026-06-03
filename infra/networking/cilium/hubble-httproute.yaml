@@ -5,11 +5,20 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-  - name: meu-gateway-dualstack
-    namespace: default
+    - name: meu-gateway-dualstack
+      group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: default
   hostnames:
-  - "hubble.aesthar.com.br"
+    - "hubble.aesthar.com.br"
   rules:
-  - backendRefs:
-    - name: hubble-ui
-      port: 80
+    - backendRefs:
+      - name: hubble-ui
+        group: ''
+        kind: Service
+        port: 80
+        weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
