@@ -8,3 +8,5 @@ persistence:
   defaultClassReplicaCount: 2
 defaultSettings:
   defaultDataPath: "/var/lib/longhorn"
+preUpgradeChecker:
+  jobEnabled: false
