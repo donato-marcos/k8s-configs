@@ -13,4 +13,7 @@ spec:
       - LoadBalancerIP
     selector:
       matchExpressions:
-      - {key: io.kubernetes.service.name, operator: NotIn, values: ['dummy-service-value']}
+      - key: io.kubernetes.service.name
+        operator: NotIn
+        values:
+        - dummy-service-value

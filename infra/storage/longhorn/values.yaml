@@ -1,0 +1,10 @@
+# longhorn-values.yaml
+global:
+  timezone: "America/Sao_Paulo"
+service:
+  ui:
+    type: ClusterIP
+persistence:
+  defaultClassReplicaCount: 2
+defaultSettings:
+  defaultDataPath: "/var/lib/longhorn"
