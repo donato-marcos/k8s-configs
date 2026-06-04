@@ -12,3 +12,5 @@ helmCharts:
 
 resources:
   - httproute.yaml
+
+namespace: longhorn-system
