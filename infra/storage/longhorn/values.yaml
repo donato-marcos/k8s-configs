@@ -5,7 +5,7 @@ service:
   ui:
     type: ClusterIP
 persistence:
-  defaultClassReplicaCount: 2
+  defaultClassReplicaCount: 3
 defaultSettings:
   defaultDataPath: "/var/lib/longhorn"
 preUpgradeChecker:
