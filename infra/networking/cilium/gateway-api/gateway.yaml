@@ -3,8 +3,6 @@ kind: Gateway
 metadata:
   name: meu-gateway-dualstack
   namespace: default
-  labels:
-    bgp-advertise: "true"
 spec:
   gatewayClassName: cilium
   addresses:
