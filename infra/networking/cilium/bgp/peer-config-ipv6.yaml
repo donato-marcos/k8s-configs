@@ -4,9 +4,9 @@ metadata:
   name: peer-config-ipv6
 spec:
   timers:
-    holdTimeSeconds: 9
-    keepAliveTimeSeconds: 3
-  ebgpMultihop: 10
+    holdTimeSeconds: 30
+    keepAliveTimeSeconds: 10
+  ebgpMultihop: 1
   families:
     - afi: ipv6
       safi: unicast

@@ -9,60 +9,93 @@ Repositório GitOps para gerenciamento de aplicações e infraestrutura Kubernet
 
 ```bash
 k8s-configs/
-├── k8s-apps
-│   ├── apps
-│   │   └── atv4-compassuol
-│   │       ├── base
-│   │       │   ├── backend
-│   │       │   │   ├── deployment.yaml
-│   │       │   │   ├── hpa.yaml
-│   │       │   │   ├── httproute.yaml
-│   │       │   │   ├── kustomization.yaml
-│   │       │   │   └── service.yaml
-│   │       │   ├── frontend
-│   │       │   │   ├── deployment.yaml
-│   │       │   │   ├── hpa.yaml
-│   │       │   │   ├── httproute.yaml
-│   │       │   │   ├── kustomization.yaml
-│   │       │   │   └── service.yaml
-│   │       │   └── kustomization.yaml
-│   │       └── overlays
-│   │           ├── dev
-│   │           │   ├── kustomization.yaml
-│   │           │   ├── namespace.yaml
-│   │           │   ├── patch-backend.yaml
-│   │           │   └── patch-frontend.yaml
-│   │           └── prod
-│   ├── argocd
+├── apps
+│   ├── atv4-compassuol
+│   │   ├── base
+│   │   │   ├── backend
+│   │   │   │   ├── deployment.yaml
+│   │   │   │   ├── hpa.yaml
+│   │   │   │   ├── httproute.yaml
+│   │   │   │   ├── kustomization.yaml
+│   │   │   │   └── service.yaml
+│   │   │   ├── frontend
+│   │   │   │   ├── deployment.yaml
+│   │   │   │   ├── hpa.yaml
+│   │   │   │   ├── httproute.yaml
+│   │   │   │   ├── kustomization.yaml
+│   │   │   │   └── service.yaml
+│   │   │   └── kustomization.yaml
+│   │   └── overlays
+│   │       ├── dev
+│   │       │   ├── kustomization.yaml
+│   │       │   ├── namespace.yaml
+│   │       │   ├── patch-backend.yaml
+│   │       │   └── patch-frontend.yaml
+│   │       └── prod
+│   └── other-apps
+├── clusters
+│   ├── homelab
 │   │   ├── apps
 │   │   │   └── atv4-compassuol.yaml
-│   │   ├── infra
-│   │   │   ├── argocd.yaml
-│   │   │   ├── cert-manager.yaml
-│   │   │   ├── cilium.yaml
-│   │   │   ├── kube-prometheus-stack.yaml
-│   │   │   └── metrics-server.yaml
-│   │   └── root-app.yaml
-│   └── infra
-│       ├── argocd
-│       │   ├── httproute-argocd.yaml
-│       │   ├── kustomization.yaml
-│       │   └── values.yaml
-│       ├── cert-manager
-│       │   ├── kustomization.yaml
-│       │   └── values.yaml
-│       ├── cilium
-│       │   ├── kustomization.yaml
-│       │   ├── networking
-│       │   │   ├── gateway-ipv4.yaml
-│       │   │   ├── httproute-hubble.yaml
-│       │   │   └── l2-ipv4-pool.yaml
-│       │   └── values.yaml
-│       ├── kube-prometheus-stack
-│       │   ├── httproute-grafana.yaml
-│       │   ├── kustomization.yaml
-│       │   └── values.yaml
-│       └── metrics-server
+│   │   ├── bootstrap
+│   │   │   ├── root-apps.yaml
+│   │   │   └── root-infra.yaml
+│   │   └── infra
+│   │       ├── argocd.yaml
+│   │       ├── cert-manager.yaml
+│   │       ├── cilium.yaml
+│   │       ├── external-dns.yaml
+│   │       ├── kube-prometheus-stack.yaml
+│   │       ├── longhorn.yaml
+│   │       └── metrics-server.yaml
+│   └── other-labs
+├── infra
+│   ├── gitops
+│   │   └── argocd
+│   │       ├── httproute.yaml
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   ├── networking
+│   │   ├── cilium
+│   │   │   ├── bgp
+│   │   │   │   ├── advertisement-ipv4.yaml
+│   │   │   │   ├── advertisement-ipv6.yaml
+│   │   │   │   ├── cluster-config.yaml
+│   │   │   │   ├── peer-config-ipv4.yaml
+│   │   │   │   └── peer-config-ipv6.yaml
+│   │   │   ├── gateway-api
+│   │   │   │   └── gateway.yaml
+│   │   │   ├── hubble-httproute.yaml
+│   │   │   ├── ipam
+│   │   │   │   └── loadbalancer-pool.yaml
+│   │   │   ├── kustomization.yaml
+│   │   │   └── values.yaml
+│   │   └── external-dns
+│   │       ├── cloudflare-api-token-secret.yaml
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   ├── observability
+│   │   ├── kube-prometheus-stack
+│   │   │   ├── httproute-grafana.yaml
+│   │   │   ├── kustomization.yaml
+│   │   │   └── values.yaml
+│   │   └── metrics-server
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   ├── security
+│   │   └── cert-manager
+│   │       ├── certificates
+│   │       │   ├── wildcard-prod.yaml
+│   │       │   └── wildcard-staging.yaml
+│   │       ├── cloudflare-api-token-secret.yaml
+│   │       ├── issuers
+│   │       │   ├── prod-clusterissuer.yaml
+│   │       │   └── staging-clusterissuer.yaml
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   └── storage
+│       └── longhorn
+│           ├── httproute.yaml
 │           ├── kustomization.yaml
 │           └── values.yaml
 └── README.md
@@ -144,3 +177,97 @@ kubectl top nodes                           # Se metrics-server ativo
 
 > 🎯 **Lab Status**: ✅ Operacional  
 > 🔄 **Tudo versionado**: rollback = `git revert`  
+
+---
+# Pensando em uma nova árvore:
+
+```bash
+k8s-configs/
+├── clusters
+│   ├── homelab
+│   │   ├── applications
+│   │   │   ├── apps
+│   │   │   │   └── atv4-compassuol.yaml
+│   │   │   ├── bootstrap
+│   │   │   │   ├── root-apps.yaml
+│   │   │   │   └── root-infra.yaml
+│   │   │   └── infra
+│   │   │       ├── argocd.yaml
+│   │   │       ├── cert-manager.yaml
+│   │   │       ├── cilium.yaml
+│   │   │       ├── external-dns.yaml
+│   │   │       ├── kube-prometheus-stack.yaml
+│   │   │       └── metrics-server.yaml
+│   │   └── config
+│   │       ├── bgp
+│   │       │   ├── advertisement-ipv4.yaml
+│   │       │   ├── advertisement-ipv6.yaml
+│   │       │   ├── cluster-config.yaml
+│   │       │   ├── peer-config-ipv4.yaml
+│   │       │   └── peer-config-ipv6.yaml
+│   │       ├── ipam
+│   │       │   └── loadbalancer-pool.yaml
+│   │       ├── certificates
+│   │       │   ├── wildcard-prod.yaml
+│   │       │   └── wildcard-staging.yaml
+│   │       ├── issuers
+│   │       │   ├── prod-clusterissuer.yaml
+│   │       │   └── staging-clusterissuer.yaml
+│   │       ├── secrets
+│   │       │   ├── external-dns-cloudflare-token.yaml
+│   │       │   └── cert-manager-cloudflare-token.yaml
+│   │       └── gateway-api
+│   │           ├── httproute-hubble.yaml
+│   │           ├── httproute-grafana.yaml
+│   │           ├── httproute-argocd.yaml
+│   │           └── gateway.yaml
+│   └── other-labs
+├── apps
+│   ├── atv4-compassuol
+│   │   ├── base
+│   │   │   ├── backend
+│   │   │   │   ├── deployment.yaml
+│   │   │   │   ├── hpa.yaml
+│   │   │   │   ├── httproute.yaml
+│   │   │   │   ├── kustomization.yaml
+│   │   │   │   └── service.yaml
+│   │   │   ├── frontend
+│   │   │   │   ├── deployment.yaml
+│   │   │   │   ├── hpa.yaml
+│   │   │   │   ├── httproute.yaml
+│   │   │   │   ├── kustomization.yaml
+│   │   │   │   └── service.yaml
+│   │   │   └── kustomization.yaml
+│   │   └── overlays
+│   │       ├── dev
+│   │       │   ├── kustomization.yaml
+│   │       │   ├── namespace.yaml
+│   │       │   ├── patch-backend.yaml
+│   │       │   └── patch-frontend.yaml
+│   │       └── prod
+│   └── other-apps
+├── infra
+│   ├── gitops
+│   │   └── argocd
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   ├── networking
+│   │   ├── cilium
+│   │   │   ├── kustomization.yaml
+│   │   │   └── values.yaml
+│   │   └── external-dns
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   ├── observability
+│   │   ├── kube-prometheus-stack
+│   │   │   ├── kustomization.yaml
+│   │   │   └── values.yaml
+│   │   └── metrics-server
+│   │       ├── kustomization.yaml
+│   │       └── values.yaml
+│   └── security
+│       └── cert-manager
+│           ├── kustomization.yaml
+│           └── values.yaml
+└── README.md
+```

@@ -9,11 +9,12 @@ spec:
   - advertisementType: "Service"
     service:
       addresses:
-      - ExternalIP
       - LoadBalancerIP
     selector:
-      matchExpressions:
-      - key: io.kubernetes.service.name
-        operator: NotIn
-        values:
-        - dummy-service-value
+      matchLabels:
+        bgp-advertise: "true"
+#      matchExpressions:
+#      - key: io.kubernetes.service.name
+#        operator: NotIn
+#        values:
+#        - dummy-service-value
