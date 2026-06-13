@@ -13,6 +13,6 @@ spec:
     selector:
       matchExpressions:
       - key: io.kubernetes.service.name
-        operator: In
+        operator: NotIn
         values:
-        - cilium-gateway-meu-gateway-dualstack
+        - dummy-service-value
