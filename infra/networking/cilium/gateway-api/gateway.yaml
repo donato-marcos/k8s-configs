@@ -9,7 +9,7 @@ spec:
   #- type: IPAddress
   #  value: "192.168.0.240"
   - type: IPAddress
-    value: "2804:14d:3280:4043::eeee:10"
+    value: "2804:14d:3280:4043::eeee:f"
   listeners:
   - name: http
     protocol: HTTP
