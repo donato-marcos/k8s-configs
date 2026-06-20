@@ -24,6 +24,6 @@ patches:
 # Configurações específicas de DEV
 images:
   - name: aesthar/atv4_frontend
-    newTag: 20260320-31ed8f4-48
+    newTag: v2
   - name: aesthar/atv4_backend
-    newTag: 20260320-69593fb-50
+    newTag: v1

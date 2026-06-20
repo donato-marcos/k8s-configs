@@ -33,6 +33,11 @@ spec:
           ports:
             - name: http
               containerPort: 80
+          env:
+            - name: BACKEND_SERVER_HOST
+              value: "backend-service"
+            - name: BACKEND_SERVER_PORT
+              value: "8000"
           resources:
             requests:
               cpu: "100m"
