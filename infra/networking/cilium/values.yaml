@@ -5,7 +5,8 @@ bgpControlPlane:
 bpf:
   hostLegacyRouting: false
   masquerade: true
-  tproxy: true
+  tproxy: false
+  datapathMode: auto
 cluster:
   id: 1
   name: k8s-cluster
