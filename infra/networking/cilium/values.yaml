@@ -75,6 +75,10 @@ loadBalancer:
   mode: dsr
   serviceTopology: true
   standalone: false
+nodePort:
+  addresses:
+    - 172.16.200.0/24
+    - fd00:172:16:200::/64
 operator:
   prometheus:
     enabled: true
