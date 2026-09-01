@@ -1,4 +1,3 @@
-# cilium-values.yaml
 autoDirectNodeRoutes: true
 bgpControlPlane:
   enabled: true
@@ -7,13 +6,20 @@ bpf:
   masquerade: true
   tproxy: false
   datapathMode: auto
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
 cluster:
   id: 1
   name: k8s-cluster
+directRoutingSkipUnreachable: false
 enableIPv4BIGTCP: true
 enableIPv4Masquerade: true
 enableIPv6BIGTCP: true
 enableIPv6Masquerade: true
+#endpointRoutes:
+#  enabled: true
 envoy:
   enabled: true
   securityContext:
@@ -24,9 +30,11 @@ envoy:
       keepCapNetBindService: true
 extraConfig:
   enable-ipv6-ndp: "true"
-  ipv6-mcast-device: enp2s0
+  ipv6-mcast-device: eth1
 gatewayAPI:
   enabled: true
+  gatewayClass:
+    create: true
 hubble:
   enabled: true
   metrics:
@@ -49,21 +57,21 @@ hubble:
     enabled: true
 ipam:
   mode: kubernetes
-  operator:
-    clusterPoolIPv4MaskSize: 24
-    clusterPoolIPv4PodCIDRList:
-    - 10.244.0.0/16
-    clusterPoolIPv6MaskSize: 64
-    clusterPoolIPv6PodCIDRList:
-    - fd00:10:244::/56
+#  operator:
+#    clusterPoolIPv4MaskSize: 24
+#    clusterPoolIPv4PodCIDRList:
+#    - 10.244.0.0/16
+#    clusterPoolIPv6MaskSize: 64
+#    clusterPoolIPv6PodCIDRList:
+#    - fd00:10:244::/56
 ipv4:
   enabled: true
 ipv4NativeRoutingCIDR: 10.244.0.0/16
 ipv6:
   enabled: true
 ipv6NativeRoutingCIDR: fd00:10:244::/56
-k8sServiceHost: 172.16.1.11
-k8sServicePort: 6443
+k8sServiceHost: localhost
+k8sServicePort: 7445
 kubeProxyReplacement: true
 loadBalancer:
   acceleration: best-effort
@@ -94,7 +102,6 @@ securityContext:
     - NET_RAW
     - NET_BIND_SERVICE
     - IPC_LOCK
-    - SYS_MODULE
     - SYS_ADMIN
     - SYS_RESOURCE
     - DAC_OVERRIDE
@@ -104,6 +111,5 @@ securityContext:
     - SYSLOG
     cleanCiliumState:
     - NET_ADMIN
-    - SYS_MODULE
     - SYS_ADMIN
     - SYS_RESOURCE
