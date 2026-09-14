@@ -6,6 +6,9 @@ bpf:
   masquerade: true
   tproxy: false
   datapathMode: auto
+bandwidthManager:
+  enabled: true
+  bbr: true
 cgroup:
   autoMount:
     enabled: false
@@ -82,7 +85,6 @@ loadBalancer:
     ports: []
   mode: dsr
   serviceTopology: true
-  standalone: false
 nodePort:
   addresses:
     - 172.16.200.0/24
