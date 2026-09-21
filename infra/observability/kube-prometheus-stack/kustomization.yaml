@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: kube-prometheus-stack
     repo: oci://ghcr.io/prometheus-community/charts/
-    version: 85.3.3
+    version: 91.4.1
     releaseName: monitoring
     namespace: monitoring
     valuesFile: values.yaml

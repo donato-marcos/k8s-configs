@@ -9,10 +9,16 @@ persistence:
   defaultFsType: xfs
   reclaimPolicy: Delete
 defaultSettings:
+  allowCollectingLonghornUsageMetrics: false
   defaultDataPath: "/var/mnt/longhorn"
   #v1DataEngine: true
   #v2DataEngine: false
   storageMinimalAvailablePercentage: 15
   storageOverProvisioningPercentage: 100
+metrics:
+  serviceMonitor:
+    enabled: true
+    interval: "30s"
+    scrapeTimeout: "10s"
 preUpgradeChecker:
   jobEnabled: false

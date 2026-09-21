@@ -16,6 +16,10 @@ cgroup:
 cluster:
   id: 1
   name: k8s-cluster
+dashboards:
+  enabled: true
+  label: grafana_dashboard
+  labelValue: "1"
 directRoutingSkipUnreachable: false
 enableIPv4BIGTCP: true
 enableIPv4Masquerade: true
@@ -25,6 +29,11 @@ enableIPv6Masquerade: true
 #  enabled: true
 envoy:
   enabled: true
+  prometheus:
+    enabled: true
+    port: 9964
+    serviceMonitor:
+      enabled: true
   securityContext:
     capabilities:
       envoy:
@@ -49,11 +58,23 @@ hubble:
     - flow
     - port-distribution
     - icmp
-    - http
+    - httpV2
+    port: 9965
+    serviceMonitor:
+      enabled: true
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      labelValue: "1"
   peerService:
     clusterDomain: cluster.local
   relay:
     enabled: true
+    prometheus:
+      enabled: true
+      port: 9966
+      serviceMonitor:
+        enabled: true
   tls:
     enabled: false
   ui:
@@ -91,9 +112,21 @@ nodePort:
     - fd00:172:16:200::/64
 operator:
   prometheus:
+    metricsService: true
     enabled: true
+    port: 9963
+    serviceMonitor:
+      enabled: true
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    labelValue: "1"
 prometheus:
-  enabled: false
+  metricsService: true
+  enabled: true
+  port: 9962
+  serviceMonitor:
+    enabled: true
 routingMode: native
 securityContext:
   capabilities:
