@@ -1,0 +1,90 @@
+global:
+  storageClass: "longhorn"
+gatewayAPI:
+  enabled: true
+  core:
+    httpRoute:
+      enabled: true
+      tls: false
+      parentRefs:
+        - group: gateway.networking.k8s.io
+          kind: Gateway
+          name: meu-gateway-dualstack
+          namespace: default
+          sectionName: https
+      hostnames:
+        - "gitea.aesthar.com.br"
+    tcpRoute:
+      enabled: false
+    backendTLSPolicy:
+      enabled: false
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClass: "longhorn"
+podSecurityContext: {}
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: true
+  runAsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1000
+  seccompProfile:
+    type: RuntimeDefault
+gitea:
+  admin:
+    username: gitea_admin
+    password: "alunofatec"
+    email: "gitea@aesthar.com.br"
+    passwordMode: keepUpdated
+  config:
+    server:
+      SSH_PORT: 22
+      SSH_LISTEN_PORT: 2222
+postgresql-ha:
+  enabled: true
+  global:
+    postgresql:
+      database: gitea
+      username: gitea
+      password: "alunofatec"
+  postgresql:
+    password: "alunofatec"
+    repmgrPassword: "alunofatec"
+    postgresPassword: "alunofatec"
+  pgpool:
+    adminPassword: "alunofatec"
+    srCheckPassword: "alunofatec"
+  persistence:
+    enabled: true
+    storageClass: "longhorn"
+    size: 10Gi
+valkey-cluster:
+  enabled: false
+  usePassword: false
+  persistence:
+    enabled: true
+    storageClass: "longhorn"
+    size: 8Gi
+postgresql:
+  enabled: false
+valkey:
+  enabled: true
+  architecture: standalone
+  global:
+    valkey:
+      password: "alunofatec"
+  primary:
+    persistence:
+      enabled: true
+      storageClass: "longhorn"
+      size: 8Gi
+  replica:
+    persistence:
+      enabled: true
+      storageClass: "longhorn"
+      size: 8Gi
