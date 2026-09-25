@@ -1,0 +1,55 @@
+expose:
+  type: route
+  tls:
+    enabled: false
+  route:
+    parentRefs:
+      - name: meu-gateway-dualstack
+        namespace: default
+        group: gateway.networking.k8s.io
+        kind: Gateway
+        sectionName: https
+    hosts:
+      - "harbor.aesthar.com.br"
+    labels: {}
+    annotations: {}
+externalURL: https://harbor.aesthar.com.br
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: 20Gi
+    jobservice:
+      jobLog:
+        storageClass: "longhorn"
+        accessMode: ReadWriteOnce
+        size: 1Gi
+    database:
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: 2Gi
+    redis:
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    trivy:
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: 5Gi
+  imageChartStorage:
+    type: filesystem
+    filesystem:
+      rootdirectory: /storage
+harborAdminPassword: "Harbor12345"
+secretKey: "5cd0b6371fa75561"
+logLevel: info
+ipFamily:
+  ipv6:
+    enabled: true
+  ipv4:
+    enabled: true
+  policy: ""
+  families: []
